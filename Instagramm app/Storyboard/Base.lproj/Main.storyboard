@@ -11,13 +11,12 @@
         <!--Tab Bar Controller-->
         <scene sceneID="zjA-la-Shu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9V-Sx-g8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tabBarController id="Hle-DT-ByN" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hcd-15-BRT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="D4I-ud-Qya" kind="relationship" relationship="viewControllers" id="Jgm-3U-Fcs"/>
@@ -27,14 +26,15 @@
                         <segue destination="234-aT-KhC" kind="relationship" relationship="viewControllers" id="uBD-zX-h4J"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z9V-Sx-g8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="271" y="-589"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Xif-5j-uJ7">
             <objects>
                 <navigationController id="D4I-ud-Qya" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="house" catalog="system" id="1tk-uX-crN"/>
+                    <tabBarItem key="tabBarItem" title="" image="house" catalog="system" id="1tk-uX-crN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b4c-Ml-ZgM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -63,11 +63,11 @@
             </objects>
             <point key="canvasLocation" x="-1262" y="840"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="wMN-2g-pbu">
             <objects>
                 <navigationController id="eWG-X5-ReK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="globe" catalog="system" id="2SY-0e-Swj"/>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="2SY-0e-Swj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nK1-ig-t5m">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,11 +80,11 @@
             </objects>
             <point key="canvasLocation" x="-545" y="123"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="UbX-9G-FWF">
             <objects>
                 <navigationController id="Y2R-wf-nFz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="plus" catalog="system" id="VhH-jo-6V2"/>
+                    <tabBarItem key="tabBarItem" title="" image="plus" catalog="system" id="VhH-jo-6V2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HmK-sJ-YOE">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -97,11 +97,11 @@
             </objects>
             <point key="canvasLocation" x="272" y="123"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="b67-Se-hpp">
             <objects>
                 <navigationController id="1tt-fY-UIZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="bell" catalog="system" id="zvh-Bv-iCu"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" id="zvh-Bv-iCu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iyR-du-hRe">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -114,11 +114,11 @@
             </objects>
             <point key="canvasLocation" x="1020" y="123"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="5oh-hp-VJA">
             <objects>
                 <navigationController id="234-aT-KhC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="person" catalog="system" id="Ttj-eG-aPr"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="Ttj-eG-aPr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Grf-83-K8x">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -131,10 +131,10 @@
             </objects>
             <point key="canvasLocation" x="1767" y="123"/>
         </scene>
-        <!--Expoler View Controller-->
+        <!--Explore View Controller-->
         <scene sceneID="lan-ih-Jps">
             <objects>
-                <viewController id="iDv-xK-eB6" customClass="ExpolerViewController" customModule="Instagramm_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iDv-xK-eB6" customClass="ExploreViewController" customModule="Instagramm_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pgh-Ju-dPG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,11 +229,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bell" catalog="system" width="128" height="124"/>
-        <image name="globe" catalog="system" width="128" height="121"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
