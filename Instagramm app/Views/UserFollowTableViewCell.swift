@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UserFollowTableViewCellDelegate: AnyObject {
-    func didTapFollowUnfollowButton(model:String)
+    func didTapFollowUnfollowButton(model: UserRelationship)
 }
 
 enum FollowState {
@@ -26,6 +26,8 @@ class UserFollowTableViewCell: UITableViewCell {
     static let identifier = "UserFollowTableViewCell"
     
     weak var delegate: UserFollowTableViewCellDelegate?
+    
+    private var model: UserRelationship?
     
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
@@ -65,6 +67,14 @@ class UserFollowTableViewCell: UITableViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(userNameLabel)
         contentView.addSubview(followButton)
+        selectionStyle = .none
+        
+        followButton.addTarget(self, action: #selector(didTapFollowButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapFollowButton() {
+        guard let model = model else { return }
+        delegate?.didTapFollowUnfollowButton(model: model)
     }
     
     required init?(coder: NSCoder) {
@@ -72,6 +82,7 @@ class UserFollowTableViewCell: UITableViewCell {
     }
     
     public func configure(with model: UserRelationship){
+        self.model = model
         nameLabel.text = model.name
         userNameLabel.text = model.userName
         switch model.type {
@@ -84,6 +95,9 @@ class UserFollowTableViewCell: UITableViewCell {
             followButton.layer.borderWidth = 1
         case .not_following:
             followButton.setTitle("Follow", for: .normal)
+            followButton.setTitleColor(.white, for: .normal)
+            followButton.backgroundColor = .link
+            followButton.layer.borderWidth = 0
             //show follow button
         }
     }
