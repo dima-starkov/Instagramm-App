@@ -11,12 +11,20 @@ class NotificationsViewController: UIViewController {
 
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
+        table.isHidden = false
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         return table
     }()
     
-    private let noNotificationView = NoNitofivationsView()
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.tintColor = .label
+        return spinner
+    }()
+    
+    private lazy var noNotificationView = NoNotifivationsView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +33,24 @@ class NotificationsViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-       
+       // spinner.startAnimating()
+        view.addSubview(spinner)
         view.addSubview(tableView)
+       
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-        
+        spinner.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        spinner.center = view.center
+    }
+    
+    private func layoutNoNotifivations() {
+        tableView.isHidden = true
+        view.addSubview(noNotificationView)
+        noNotificationView.frame = CGRect(x: 0, y: 0, width: view.widht/2, height: view.widht/4)
+        noNotificationView.center = view.center
     }
     
 }

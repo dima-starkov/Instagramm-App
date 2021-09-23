@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoNitofivationsView: UIView {
+class NoNotifivationsView: UIView {
     
     private let label: UILabel = {
         let label = UILabel()

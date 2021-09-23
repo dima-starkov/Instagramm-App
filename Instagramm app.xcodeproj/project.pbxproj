@@ -30,6 +30,8 @@
 		6AE4219A26D24E2D000880A6 /* ProfileInfoHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4219926D24E2D000880A6 /* ProfileInfoHeaderCollectionReusableView.swift */; };
 		6AE4219C26D257A1000880A6 /* ProfileTabsCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4219B26D257A1000880A6 /* ProfileTabsCollectionReusableView.swift */; };
 		6AE4219E26D28617000880A6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE4219D26D28617000880A6 /* Models.swift */; };
+		6AE9D3F526FB8FA9002E8535 /* NotificationFollowEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE9D3F426FB8FA9002E8535 /* NotificationFollowEventTableViewCell.swift */; };
+		6AE9D3F726FB8FC2002E8535 /* NotificationLikeEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE9D3F626FB8FC2002E8535 /* NotificationLikeEventTableViewCell.swift */; };
 		6AF609AA26935C3600CEAF1A /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF609A926935C3600CEAF1A /* ExploreViewController.swift */; };
 		6AF609AC26935C5400CEAF1A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF609AB26935C5400CEAF1A /* CameraViewController.swift */; };
 		6AF609AE26935C6F00CEAF1A /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF609AD26935C6F00CEAF1A /* NotificationsViewController.swift */; };
@@ -73,6 +75,8 @@
 		6AE4219926D24E2D000880A6 /* ProfileInfoHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		6AE4219B26D257A1000880A6 /* ProfileTabsCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabsCollectionReusableView.swift; sourceTree = "<group>"; };
 		6AE4219D26D28617000880A6 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		6AE9D3F426FB8FA9002E8535 /* NotificationFollowEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFollowEventTableViewCell.swift; sourceTree = "<group>"; };
+		6AE9D3F626FB8FC2002E8535 /* NotificationLikeEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLikeEventTableViewCell.swift; sourceTree = "<group>"; };
 		6AF609A926935C3600CEAF1A /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		6AF609AB26935C5400CEAF1A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		6AF609AD26935C6F00CEAF1A /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		6A5116CE269F0E8F0070ACAD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				6AE9D3F326FB8F73002E8535 /* Notifications */,
 				6A5116D1269F10790070ACAD /* Home Feed */,
 				6ADD483E26A7D13C00825747 /* FormTableViewCell.swift */,
 				6AE4219726D24DD2000880A6 /* PhotoCollectionViewCell.swift */,
@@ -165,6 +170,15 @@
 				6AE4219B26D257A1000880A6 /* ProfileTabsCollectionReusableView.swift */,
 			);
 			name = "Collectin View Headers";
+			sourceTree = "<group>";
+		};
+		6AE9D3F326FB8F73002E8535 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				6AE9D3F426FB8FA9002E8535 /* NotificationFollowEventTableViewCell.swift */,
+				6AE9D3F626FB8FC2002E8535 /* NotificationLikeEventTableViewCell.swift */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 		6AF609A426935AED00CEAF1A /* Controllers */ = {
@@ -401,6 +415,8 @@
 				6AF609B726935D3900CEAF1A /* RegistrationViewController.swift in Sources */,
 				6A88D7CE26F78AB500CE6C9D /* NoNitofivationsView.swift in Sources */,
 				6A10748B26937C4F00C7DD6E /* Extensions.swift in Sources */,
+				6AE9D3F726FB8FC2002E8535 /* NotificationLikeEventTableViewCell.swift in Sources */,
+				6AE9D3F526FB8FA9002E8535 /* NotificationFollowEventTableViewCell.swift in Sources */,
 				6ABDC06526D6C43F002D53FE /* UserFollowTableViewCell.swift in Sources */,
 				6A5116D3269F10BB0070ACAD /* IGFeddPostHeaderTableViewCell.swift in Sources */,
 				6AF609BF26935DA300CEAF1A /* ListViewController.swift in Sources */,
