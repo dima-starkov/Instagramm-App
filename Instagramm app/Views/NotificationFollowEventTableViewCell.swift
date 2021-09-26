@@ -31,7 +31,7 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let button: UIButton = {
+    private let followButton: UIButton = {
         let button = UIButton()
         
         return button
@@ -42,7 +42,7 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
         contentView.clipsToBounds = true
         contentView.addSubview(profileImageView)
         contentView.addSubview(label)
-        contentView.addSubview(button)
+        contentView.addSubview(followButton)
     }
     
     required init?(coder: NSCoder) {
@@ -55,7 +55,11 @@ class NotificationFollowEventTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
+        followButton.setTitle(nil, for: .normal)
+        followButton.backgroundColor = nil
+        followButton.layer.borderWidth = 0
+        label.text = nil
+        profileImageView.image = nil
     }
     
     override func layoutSubviews() {

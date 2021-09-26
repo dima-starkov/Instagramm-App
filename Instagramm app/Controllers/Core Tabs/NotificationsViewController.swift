@@ -7,12 +7,26 @@
 
 import UIKit
 
-class NotificationsViewController: UIViewController {
+enum UserNotificationType {
+    case like(post: UserPost)
+    case follow
+}
+
+struct UserNotification {
+    let type: UserNotificationType
+    let text: String
+    let user: User
+}
+
+final class NotificationsViewController: UIViewController {
 
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.isHidden = false
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(NotificationLikeEventTableViewCell.self,
+                       forCellReuseIdentifier:NotificationLikeEventTableViewCell.identifier )
+        table.register(NotificationFollowEventTableViewCell.self,
+                       forCellReuseIdentifier:NotificationFollowEventTableViewCell.identifier )
         
         return table
     }()
@@ -25,6 +39,8 @@ class NotificationsViewController: UIViewController {
     }()
     
     private lazy var noNotificationView = NoNotifivationsView()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
