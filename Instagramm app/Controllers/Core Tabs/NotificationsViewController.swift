@@ -38,6 +38,8 @@ final class NotificationsViewController: UIViewController {
         return spinner
     }()
     
+    private var models = [UserNotification]()
+    
     private lazy var noNotificationView = NoNotifivationsView()
     
     // MARK: - Lifecycle
@@ -46,7 +48,7 @@ final class NotificationsViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Notifications"
         view.backgroundColor = .systemBackground
-        
+        fetchNotification()
         tableView.delegate = self
         tableView.dataSource = self
        // spinner.startAnimating()
@@ -62,7 +64,31 @@ final class NotificationsViewController: UIViewController {
         spinner.center = view.center
     }
     
-    private func layoutNoNotifivations() {
+    private func fetchNotification() {
+        for x in 0...100 {
+            let post = UserPost(identifier: "",
+                                postType: .photo,
+                                thumbnailImage: URL(string: "https://www.google.com")!,
+                                caption: "ss",
+                                likeCount: [],
+                                comments: [],
+                                createdDate: Date(),
+                                taggedUsers: [])
+            
+            let model = UserNotification(type: x % 2 == 0 ? .like(post: post ) : .follow,
+                                         text: "bla",
+                                    user: User(userName: "Dima",
+                                                    bio: " ",
+                                                    name: (first: "", last: ""),
+                                                    birthDate: Date(),
+                                                    profilePhoto: URL(string: "https://www.google.com")!,
+                                                    gender: .male,
+                                                    counts: UserCount(followers: 10, following: 10, posts: 10), joinDate: Date()))
+            models.append(model)
+        }
+    }
+    
+    private func addNoNotifivations() {
         tableView.isHidden = true
         view.addSubview(noNotificationView)
         noNotificationView.frame = CGRect(x: 0, y: 0, width: view.widht/2, height: view.widht/4)
@@ -76,13 +102,28 @@ final class NotificationsViewController: UIViewController {
 extension NotificationsViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell",for: indexPath)
-        
-        return cell
+        let model = models[indexPath.row]
+        switch model.type {
+        case .follow:
+            let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier,for: indexPath) as! NotificationFollowEventTableViewCell
+            //cell.configure(with: model)
+            
+            return cell
+            
+        case .like(_):
+            let cell = tableView.dequeueReusableCell(withIdentifier: NotificationLikeEventTableViewCell.identifier,for: indexPath) as! NotificationLikeEventTableViewCell
+            cell.configure(with: model)
+            
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 52
     }
     
 }

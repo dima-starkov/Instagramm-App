@@ -34,6 +34,7 @@ public enum UserPostType {
 
 
 public struct UserPost {
+    let identifier: String
     let postType: UserPostType
     let thumbnailImage: URL
     let caption: String?
