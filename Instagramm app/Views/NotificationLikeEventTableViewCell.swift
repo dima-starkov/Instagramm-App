@@ -25,7 +25,7 @@ class NotificationLikeEventTableViewCell: UITableViewCell {
         imageView.backgroundColor = .tertiarySystemBackground
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(named: "test")
+       // imageView.image = UIImage(named: "test")
         return imageView
     }()
     
@@ -46,6 +46,7 @@ class NotificationLikeEventTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.clipsToBounds = true
+        selectionStyle = .none
         contentView.addSubview(profileImageView)
         contentView.addSubview(label)
         contentView.addSubview(postButton)

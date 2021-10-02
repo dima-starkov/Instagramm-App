@@ -9,7 +9,7 @@ import UIKit
 
 enum UserNotificationType {
     case like(post: UserPost)
-    case follow
+    case follow(state: FollowState)
 }
 
 struct UserNotification {
@@ -75,7 +75,7 @@ final class NotificationsViewController: UIViewController {
                                 createdDate: Date(),
                                 taggedUsers: [])
             
-            let model = UserNotification(type: x % 2 == 0 ? .like(post: post ) : .follow,
+            let model = UserNotification(type: x % 2 == 0 ? .like(post: post ) : .follow(state: .not_following),
                                          text: "bla",
                                     user: User(userName: "Dima",
                                                     bio: " ",
@@ -110,14 +110,14 @@ extension NotificationsViewController: UITableViewDelegate,UITableViewDataSource
         switch model.type {
         case .follow:
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier,for: indexPath) as! NotificationFollowEventTableViewCell
-            //cell.configure(with: model)
-            
+           // cell.configure(with: model)
+            cell.delegate = self
             return cell
             
         case .like(_):
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationLikeEventTableViewCell.identifier,for: indexPath) as! NotificationLikeEventTableViewCell
             cell.configure(with: model)
-            
+            cell.delegate = self
             return cell
         }
     }
@@ -126,4 +126,22 @@ extension NotificationsViewController: UITableViewDelegate,UITableViewDataSource
         return 52
     }
     
+}
+
+extension NotificationsViewController: NotificationLikeEventTableViewCellDelegate {
+    func didTapRelatedPostButton(model: UserNotification) {
+        switch model.type {
+        case .like(let post):
+            let vc = PostViewController(model: nil)
+            vc.title = "Post"
+        case .follow(_):
+            fatalError("Should never get called")
+        }
+    }
+}
+
+extension NotificationsViewController: NotificationFollowEventTableViewCellDelegate {
+    func didTapFollowUnFollowButton(model: UserNotification) {
+       print("TapButton")
+    }
 }
