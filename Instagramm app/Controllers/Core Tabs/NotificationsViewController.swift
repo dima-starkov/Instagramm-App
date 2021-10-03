@@ -66,6 +66,15 @@ final class NotificationsViewController: UIViewController {
     
     private func fetchNotification() {
         for x in 0...100 {
+            
+            let user = User(userName: "Dima",
+                            bio: " ",
+                            name: (first: "", last: ""),
+                            birthDate: Date(),
+                            profilePhoto: URL(string: "https://www.google.com")!,
+                            gender: .male,
+                            counts: UserCount(followers: 10, following: 10, posts: 10), joinDate: Date())
+            
             let post = UserPost(identifier: "",
                                 postType: .photo,
                                 thumbnailImage: URL(string: "https://www.google.com")!,
@@ -73,17 +82,11 @@ final class NotificationsViewController: UIViewController {
                                 likeCount: [],
                                 comments: [],
                                 createdDate: Date(),
-                                taggedUsers: [])
+                                taggedUsers: [], owner: user)
             
             let model = UserNotification(type: x % 2 == 0 ? .like(post: post ) : .follow(state: .not_following),
                                          text: "bla",
-                                    user: User(userName: "Dima",
-                                                    bio: " ",
-                                                    name: (first: "", last: ""),
-                                                    birthDate: Date(),
-                                                    profilePhoto: URL(string: "https://www.google.com")!,
-                                                    gender: .male,
-                                                    counts: UserCount(followers: 10, following: 10, posts: 10), joinDate: Date()))
+                                    user: user)
             models.append(model)
         }
     }
@@ -133,7 +136,9 @@ extension NotificationsViewController: NotificationLikeEventTableViewCellDelegat
         switch model.type {
         case .like(let post):
             let vc = PostViewController(model: nil)
-            vc.title = "Post"
+            vc.title = post.postType.rawValue
+            vc.navigationItem.largeTitleDisplayMode = .never
+            navigationController?.pushViewController(vc, animated: true)
         case .follow(_):
             fatalError("Should never get called")
         }
