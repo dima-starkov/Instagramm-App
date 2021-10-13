@@ -90,7 +90,7 @@ class PostViewController: UIViewController {
         
         var comments = [PostComment]()
         for x in 0 ..< 4 {
-            comments.append(PostComment(userName: "@joe", text: "Good amazing", createdDate: Date(), likes:[]))
+            comments.append(PostComment(identifier: "123_\(x)" ,userName: "@joe", text: "Good amazing", createdDate: Date(), likes:[]))
         }
         renderModels.append(PostRenderViewModel(renderType: .comments(comments: comments)))
     }
@@ -119,25 +119,25 @@ extension PostViewController: UITableViewDelegate,UITableViewDataSource {
         case .actions(let actions):
             let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionsTableViewCell.identifier,
                                                      for: indexPath) as! IGFeedPostActionsTableViewCell
-            
+        
             return cell
             
         case .header(let user):
             let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
                                                      for: indexPath) as! IGFeedPostHeaderTableViewCell
-            
+      
             return cell
             
         case .primaryContent(let post):
             let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier,
                                                      for: indexPath) as! IGFeedPostTableViewCell
-            
+           
             return cell
             
         case .comments(let comments):
             let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier,
                                                      for: indexPath) as! IGFeedPostGeneralTableViewCell
-            
+      
             return cell
         }
     }

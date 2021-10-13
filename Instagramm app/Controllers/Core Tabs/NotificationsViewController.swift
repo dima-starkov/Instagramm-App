@@ -113,7 +113,7 @@ extension NotificationsViewController: UITableViewDelegate,UITableViewDataSource
         switch model.type {
         case .follow:
             let cell = tableView.dequeueReusableCell(withIdentifier: NotificationFollowEventTableViewCell.identifier,for: indexPath) as! NotificationFollowEventTableViewCell
-           // cell.configure(with: model)
+            cell.configure(with: model)
             cell.delegate = self
             return cell
             
@@ -135,7 +135,7 @@ extension NotificationsViewController: NotificationLikeEventTableViewCellDelegat
     func didTapRelatedPostButton(model: UserNotification) {
         switch model.type {
         case .like(let post):
-            let vc = PostViewController(model: nil)
+            let vc = PostViewController(model: post)
             vc.title = post.postType.rawValue
             vc.navigationItem.largeTitleDisplayMode = .never
             navigationController?.pushViewController(vc, animated: true)
