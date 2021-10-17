@@ -36,10 +36,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        createMockModels()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     
+    }
+    
+    private func createMockModels() {
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -88,7 +93,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
             let commentsModel = model.comments
             switch commentsModel.renderType {
             case .comments(let comments): return comments.count > 2 ? 2: comments.count
-            @unknown default: fatalError("Invalid case")
+            case .actions,.primaryContent,.header: return 0
             }
         default: fatalError()
         }
@@ -111,31 +116,77 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         model = feedRenderModels[position]
         }
         
-        switch model.post.renderType {
-        case .actions(let actions):
-            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionsTableViewCell.identifier,
-                                                     for: indexPath) as! IGFeedPostActionsTableViewCell
+        let subSection = x % 4
         
-            return cell
+        switch subSection {
+        case 0:
+            let headerModel = model.header
+            switch headerModel.renderType {
+            case .header(let user):
+                let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
+                                                                    for: indexPath) as! IGFeedPostHeaderTableViewCell
             
-        case .header(let user):
-            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
-                                                     for: indexPath) as! IGFeedPostHeaderTableViewCell
-      
-            return cell
+                return cell
+            case .actions,.primaryContent,.comments: return UITableViewCell()
+            }
+        case 1:
+            let postModel = model.post
+            switch postModel.renderType {
+            case .primaryContent(let post):
+                let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier,
+                                                                    for: indexPath) as! IGFeedPostTableViewCell
             
-        case .primaryContent(let post):
-            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier,
-                                                     for: indexPath) as! IGFeedPostTableViewCell
-           
-            return cell
+                return cell
+            case .actions,.header,.comments: return UITableViewCell()
+            }
+        case 2:
+            let actionsModel = model.action
+            switch actionsModel.renderType {
+            case .actions(let provider):
+                let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionsTableViewCell.identifier,
+                                                                    for: indexPath) as! IGFeedPostActionsTableViewCell
             
-        case .comments(let comments):
-            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier,
-                                                     for: indexPath) as! IGFeedPostGeneralTableViewCell
-      
-            return cell
+                return cell
+            case .header,.primaryContent,.comments: return UITableViewCell()
+            }
+        case 3:
+            let commentsModel = model.comments
+            switch commentsModel.renderType {
+            case .comments(let comments):
+                let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier,
+                                                                    for: indexPath) as! IGFeedPostGeneralTableViewCell
+            
+                return cell
+            case .actions,.primaryContent,.header: return UITableViewCell()
+            }
+        default: fatalError()
         }
+        
+//        switch model.post.renderType {
+//        case .actions(let actions):
+//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionsTableViewCell.identifier,
+//                                                     for: indexPath) as! IGFeedPostActionsTableViewCell
+//
+//            return cell
+//
+//        case .header(let user):
+//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
+//                                                     for: indexPath) as! IGFeedPostHeaderTableViewCell
+//
+//            return cell
+//
+//        case .primaryContent(let post):
+//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier,
+//                                                     for: indexPath) as! IGFeedPostTableViewCell
+//
+//            return cell
+//
+//        case .comments(let comments):
+//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier,
+//                                                     for: indexPath) as! IGFeedPostGeneralTableViewCell
+//
+//            return cell
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,12 +194,17 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = feedRenderModels[indexPath.section]
-        switch model.post.renderType {
-        case .actions(_): return 60
-        case .header(_): return 70
-        case .primaryContent(_): return tableView.widht
-        case .comments(_): return 50
+        
+        let subSection = indexPath.section % 4
+        
+        switch subSection {
+        case 0: return 70
+        case 1: return  tableView.widht
+        case 2: return 60
+        case 3: return 50
+        default:
+            return 0
         }
+        
     }
 }
