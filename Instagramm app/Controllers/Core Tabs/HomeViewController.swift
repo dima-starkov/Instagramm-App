@@ -44,7 +44,30 @@ class HomeViewController: UIViewController {
     }
     
     private func createMockModels() {
+        let user = User(userName: "Dima",
+                        bio: " ",
+                        name: (first: "", last: ""),
+                        birthDate: Date(),
+                        profilePhoto: URL(string: "https://www.google.com")!,
+                        gender: .male,
+                        counts: UserCount(followers: 10, following: 10, posts: 10), joinDate: Date())
         
+        let post = UserPost(identifier: "",
+                            postType: .photo,
+                            thumbnailImage: URL(string: "https://www.google.com")!,
+                            caption: "ss",
+                            likeCount: [],
+                            comments: [],
+                            createdDate: Date(),
+                            taggedUsers: [], owner: user)
+        let comments = [PostComment(identifier: "", userName: "@dima", text: "Cool", createdDate: Date(), likes: [])]
+        
+        for x in 0..<5 {
+            feedRenderModels.append(HomeFeedRenderViewModel(header: PostRenderViewModel(renderType: .header(provider: user)),
+                                                            post: PostRenderViewModel(renderType: .primaryContent(provider: post)),
+                                                            action: PostRenderViewModel(renderType: .actions(proveder: "")),
+                                                            comments: PostRenderViewModel(renderType: .comments(comments: comments))))
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -162,31 +185,6 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         default: fatalError()
         }
         
-//        switch model.post.renderType {
-//        case .actions(let actions):
-//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostActionsTableViewCell.identifier,
-//                                                     for: indexPath) as! IGFeedPostActionsTableViewCell
-//
-//            return cell
-//
-//        case .header(let user):
-//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
-//                                                     for: indexPath) as! IGFeedPostHeaderTableViewCell
-//
-//            return cell
-//
-//        case .primaryContent(let post):
-//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostTableViewCell.identifier,
-//                                                     for: indexPath) as! IGFeedPostTableViewCell
-//
-//            return cell
-//
-//        case .comments(let comments):
-//            let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostGeneralTableViewCell.identifier,
-//                                                     for: indexPath) as! IGFeedPostGeneralTableViewCell
-//
-//            return cell
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -206,5 +204,14 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
             return 0
         }
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+       let subSection = section % 4
+        return subSection == 3 ? 50 : 0
     }
 }
