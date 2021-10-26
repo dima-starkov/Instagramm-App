@@ -18,6 +18,7 @@ final class IGFeedPostTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.backgroundColor = nil
+        image.clipsToBounds = true
         return image
     }()
     
@@ -26,7 +27,6 @@ final class IGFeedPostTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubview(postImageView)
         contentView.layer.addSublayer(playerLayer)
     }
