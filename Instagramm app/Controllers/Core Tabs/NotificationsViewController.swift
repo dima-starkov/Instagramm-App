@@ -77,7 +77,7 @@ final class NotificationsViewController: UIViewController {
             
             let post = UserPost(identifier: "",
                                 postType: .photo,
-                                thumbnailImage: URL(string: "https://www.google.com")!,
+                                thumbnailImage: URL(string: "https://www.google.com")!, postURL: URL(string: "https://www.google.com")!,
                                 caption: "ss",
                                 likeCount: [],
                                 comments: [],
