@@ -23,6 +23,7 @@ class IGFeedPostHeaderTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
+        imageView.tintColor = .label
         return imageView
     }()
     
@@ -69,7 +70,7 @@ class IGFeedPostHeaderTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let size = contentView.height - 4
+        let size = contentView.height - 10
         photoImageView.frame = CGRect(x: 2, y: 2, width: size, height: size)
         photoImageView.layer.cornerRadius = size/2
         
