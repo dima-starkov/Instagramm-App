@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
     }
     
     private func createMockModels() {
-        let user = User(userName: "Dima",
+        let user = User(userName: "@dima_stakov",
                         bio: " ",
                         name: (first: "", last: ""),
                         birthDate: Date(),
@@ -149,6 +149,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: IGFeedPostHeaderTableViewCell.identifier,
                                                                     for: indexPath) as! IGFeedPostHeaderTableViewCell
                 cell.configure(with: user)
+                cell.delegate = self
                 return cell
             case .actions,.primaryContent,.comments: return UITableViewCell()
             }
@@ -213,5 +214,22 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
        let subSection = section % 4
         return subSection == 3 ? 50 : 0
+    }
+}
+
+extension HomeViewController: IGFeedPostHeaderTableViewCellDelegate {
+    func didTapMoreButton() {
+        let actionSheet = UIAlertController(title: "Post Options", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        actionSheet.addAction(cancel)
+        let report = UIAlertAction(title: "Report Post", style: .destructive, handler: { [weak self] _ in
+            self?.reportPost()
+        })
+        actionSheet.addAction(report)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func reportPost(){
+        
     }
 }

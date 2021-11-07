@@ -8,7 +8,13 @@
 import UIKit
 import SDWebImage
 
+protocol IGFeedPostHeaderTableViewCellDelegate: AnyObject {
+    func didTapMoreButton()
+}
+
 class IGFeedPostHeaderTableViewCell: UITableViewCell {
+    
+    weak var delegate: IGFeedPostHeaderTableViewCellDelegate?
 
     static let identifier = "IGFeedPostHeaderTableViewCell"
     
@@ -47,7 +53,8 @@ class IGFeedPostHeaderTableViewCell: UITableViewCell {
     }
     
     @objc private func didTapMore() {
-        
+        delegate?.didTapMoreButton()
+        print("tapped")
     }
     
     required init?(coder: NSCoder) {
