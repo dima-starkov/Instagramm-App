@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol IGFeedPostActionsTableViewCellDelegate: AnyObject {
+    func tapLikeButton()
+    func tapCommentButton()
+    func tapSendButton()
+}
+
 class IGFeedPostActionsTableViewCell: UITableViewCell {
     
     static let identifier = "IGFeedPostActionsTableViewCell"
